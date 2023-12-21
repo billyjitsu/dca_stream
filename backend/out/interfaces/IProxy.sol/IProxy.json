@@ -1,0 +1,51 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "node_modules/@api3/contracts/v0.8/interfaces/IProxy.sol",
+    "id": 113,
+    "exportedSymbols": {
+      "IProxy": [
+        109
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:116:3",
+    "nodes": [
+      {
+        "id": 111,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:3",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ]
+      },
+      {
+        "id": 112,
+        "nodeType": "ImportDirective",
+        "src": "57:90:3",
+        "nodes": [],
+        "absolutePath": "node_modules/@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol",
+        "file": "@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 113,
+        "sourceUnit": 110,
+        "symbolAliases": [],
+        "unitAlias": ""
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 3
+}

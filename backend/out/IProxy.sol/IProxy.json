@@ -1,0 +1,325 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "api3ServerV1",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "read",
+      "outputs": [
+        {
+          "internalType": "int224",
+          "name": "value",
+          "type": "int224"
+        },
+        {
+          "internalType": "uint32",
+          "name": "timestamp",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "api3ServerV1()": "2d6a744e",
+    "read()": "57de26a4"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"api3ServerV1\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"read\",\"outputs\":[{\"internalType\":\"int224\",\"name\":\"value\",\"type\":\"int224\"},{\"internalType\":\"uint32\",\"name\":\"timestamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"See DapiProxy.sol for comments about usage\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"node_modules/@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol\":\"IProxy\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@api3/=node_modules/@api3/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":ds-test/=lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"node_modules/@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol\":{\"keccak256\":\"0x3ad69ef6ff3de4056ec43eb8b47465f3d896f88e95cfffb909a6d057b91db17b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://57ad4a36d46d4886e274b685d32ca0f2f05fdecfadcf64be8c1769a76e7cd73f\",\"dweb:/ipfs/Qmcmrzc3WiqTppzDkuux6H7FSBhyRyfFXXtcAfFH7zNhY2\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.19+commit.7dd6d404"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "api3ServerV1",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "read",
+          "outputs": [
+            {
+              "internalType": "int224",
+              "name": "value",
+              "type": "int224"
+            },
+            {
+              "internalType": "uint32",
+              "name": "timestamp",
+              "type": "uint32"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@api3/=node_modules/@api3/",
+        "@openzeppelin/=node_modules/@openzeppelin/",
+        "ds-test/=lib/ds-test/src/",
+        "eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        "hardhat/=node_modules/hardhat/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "node_modules/@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol": "IProxy"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "node_modules/@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol": {
+        "keccak256": "0x3ad69ef6ff3de4056ec43eb8b47465f3d896f88e95cfffb909a6d057b91db17b",
+        "urls": [
+          "bzz-raw://57ad4a36d46d4886e274b685d32ca0f2f05fdecfadcf64be8c1769a76e7cd73f",
+          "dweb:/ipfs/Qmcmrzc3WiqTppzDkuux6H7FSBhyRyfFXXtcAfFH7zNhY2"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "node_modules/@api3/airnode-protocol-v1/contracts/api3-server-v1/proxies/interfaces/IProxy.sol",
+    "id": 110,
+    "exportedSymbols": {
+      "IProxy": [
+        109
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:236:2",
+    "nodes": [
+      {
+        "id": 95,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:2",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ]
+      },
+      {
+        "id": 109,
+        "nodeType": "ContractDefinition",
+        "src": "109:158:2",
+        "nodes": [
+          {
+            "id": 103,
+            "nodeType": "FunctionDefinition",
+            "src": "132:71:2",
+            "nodes": [],
+            "functionSelector": "57de26a4",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "read",
+            "nameLocation": "141:4:2",
+            "parameters": {
+              "id": 97,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "145:2:2"
+            },
+            "returnParameters": {
+              "id": 102,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 99,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "178:5:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 103,
+                  "src": "171:12:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int224",
+                    "typeString": "int224"
+                  },
+                  "typeName": {
+                    "id": 98,
+                    "name": "int224",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "171:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int224",
+                      "typeString": "int224"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 101,
+                  "mutability": "mutable",
+                  "name": "timestamp",
+                  "nameLocation": "192:9:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 103,
+                  "src": "185:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 100,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "185:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "170:32:2"
+            },
+            "scope": 109,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 108,
+            "nodeType": "FunctionDefinition",
+            "src": "209:56:2",
+            "nodes": [],
+            "functionSelector": "2d6a744e",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "api3ServerV1",
+            "nameLocation": "218:12:2",
+            "parameters": {
+              "id": 104,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "230:2:2"
+            },
+            "returnParameters": {
+              "id": 107,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 106,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 108,
+                  "src": "256:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 105,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "256:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "255:9:2"
+            },
+            "scope": 109,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IProxy",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 96,
+          "nodeType": "StructuredDocumentation",
+          "src": "57:52:2",
+          "text": "@dev See DapiProxy.sol for comments about usage"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          109
+        ],
+        "name": "IProxy",
+        "nameLocation": "119:6:2",
+        "scope": 110,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 2
+}

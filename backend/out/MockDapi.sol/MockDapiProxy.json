@@ -1,0 +1,660 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "read",
+      "outputs": [
+        {
+          "internalType": "int224",
+          "name": "_value",
+          "type": "int224"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_timestamp",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int224",
+          "name": "_value",
+          "type": "int224"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_timestamp",
+          "type": "uint32"
+        }
+      ],
+      "name": "setDapiValues",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "timestamp",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "value",
+      "outputs": [
+        {
+          "internalType": "int224",
+          "name": "",
+          "type": "int224"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x608060405234801561001057600080fd5b50610174806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633fa4f2451461005157806357de26a414610076578063b80777ea1461009d578063f2128880146100c9575b600080fd5b60005461005e90601b0b81565b604051601b9190910b81526020015b60405180910390f35b60005460408051601b83900b8152600160e01b90920463ffffffff1660208301520161006d565b6000546100b490600160e01b900463ffffffff1681565b60405163ffffffff909116815260200161006d565b6100f46100d73660046100f6565b63ffffffff16600160e01b026001600160e01b0390911617600055565b005b6000806040838503121561010957600080fd5b823580601b0b811461011a57600080fd5b9150602083013563ffffffff8116811461013357600080fd5b80915050925092905056fea2646970667358221220ba5f819ba65521ff1f86f6bc4a864116fa75c712f373cf882b8c5c96db2cc14d64736f6c63430008130033",
+    "sourceMap": "134:404:0:-:0;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80633fa4f2451461005157806357de26a414610076578063b80777ea1461009d578063f2128880146100c9575b600080fd5b60005461005e90601b0b81565b604051601b9190910b81526020015b60405180910390f35b60005460408051601b83900b8152600160e01b90920463ffffffff1660208301520161006d565b6000546100b490600160e01b900463ffffffff1681565b60405163ffffffff909116815260200161006d565b6100f46100d73660046100f6565b63ffffffff16600160e01b026001600160e01b0390911617600055565b005b6000806040838503121561010957600080fd5b823580601b0b811461011a57600080fd5b9150602083013563ffffffff8116811461013357600080fd5b80915050925092905056fea2646970667358221220ba5f819ba65521ff1f86f6bc4a864116fa75c712f373cf882b8c5c96db2cc14d64736f6c63430008130033",
+    "sourceMap": "134:404:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;166:19;;;;;;;;;;;;187:2:6;176:22;;;;158:41;;146:2;131:18;166:19:0;;;;;;;;364:171;430:13;489:5;364:171;;;489:5;;;;380:41:6;;-1:-1:-1;;;518:9:0;;;;;452:2:6;437:18;;430:51;353:18;364:171:0;210:277:6;192:23:0;;;;;-1:-1:-1;;;192:23:0;;;;;;;;;666:10:6;654:23;;;636:42;;624:2;609:18;192:23:0;492:192:6;224:132:0;;;;;;:::i;:::-;326:22;;-1:-1:-1;;;326:22:0;-1:-1:-1;;;;;301:14:0;;;326:22;301:5;326:22;224:132;;;689:447:6;755:6;763;816:2;804:9;795:7;791:23;787:32;784:52;;;832:1;829;822:12;784:52;871:9;858:23;925:5;921:2;910:21;903:5;900:32;890:60;;946:1;943;936:12;890:60;969:5;-1:-1:-1;1026:2:6;1011:18;;998:32;1074:10;1061:24;;1049:37;;1039:65;;1100:1;1097;1090:12;1039:65;1123:7;1113:17;;;689:447;;;;;:::o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "read()": "57de26a4",
+    "setDapiValues(int224,uint32)": "f2128880",
+    "timestamp()": "b80777ea",
+    "value()": "3fa4f245"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"read\",\"outputs\":[{\"internalType\":\"int224\",\"name\":\"_value\",\"type\":\"int224\"},{\"internalType\":\"uint32\",\"name\":\"_timestamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int224\",\"name\":\"_value\",\"type\":\"int224\"},{\"internalType\":\"uint32\",\"name\":\"_timestamp\",\"type\":\"uint32\"}],\"name\":\"setDapiValues\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"timestamp\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"value\",\"outputs\":[{\"internalType\":\"int224\",\"name\":\"\",\"type\":\"int224\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"This is a mock contract to simulate a dAPI Proxy Contract.\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Mocks/MockDapi.sol\":\"MockDapiProxy\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@api3/=node_modules/@api3/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":ds-test/=lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/Mocks/MockDapi.sol\":{\"keccak256\":\"0xb6f927d5313165d427c6bd6a1fb9c52fd21875d48e69a3c844d27f826cefbeac\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://fee4185fe3112d8fa43237786e83e5029cbc637570f77aefead19b480c13a148\",\"dweb:/ipfs/QmXhhhDftJ3ovTZFxGi2RcSLUcSFVEYFCuhBMknkJkgTit\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.19+commit.7dd6d404"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "read",
+          "outputs": [
+            {
+              "internalType": "int224",
+              "name": "_value",
+              "type": "int224"
+            },
+            {
+              "internalType": "uint32",
+              "name": "_timestamp",
+              "type": "uint32"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "int224",
+              "name": "_value",
+              "type": "int224"
+            },
+            {
+              "internalType": "uint32",
+              "name": "_timestamp",
+              "type": "uint32"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setDapiValues"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "timestamp",
+          "outputs": [
+            {
+              "internalType": "uint32",
+              "name": "",
+              "type": "uint32"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "value",
+          "outputs": [
+            {
+              "internalType": "int224",
+              "name": "",
+              "type": "int224"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@api3/=node_modules/@api3/",
+        "@openzeppelin/=node_modules/@openzeppelin/",
+        "ds-test/=lib/ds-test/src/",
+        "eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        "hardhat/=node_modules/hardhat/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "contracts/Mocks/MockDapi.sol": "MockDapiProxy"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "contracts/Mocks/MockDapi.sol": {
+        "keccak256": "0xb6f927d5313165d427c6bd6a1fb9c52fd21875d48e69a3c844d27f826cefbeac",
+        "urls": [
+          "bzz-raw://fee4185fe3112d8fa43237786e83e5029cbc637570f77aefead19b480c13a148",
+          "dweb:/ipfs/QmXhhhDftJ3ovTZFxGi2RcSLUcSFVEYFCuhBMknkJkgTit"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "contracts/Mocks/MockDapi.sol",
+    "id": 40,
+    "exportedSymbols": {
+      "MockDapiProxy": [
+        39
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:505:0",
+    "nodes": [
+      {
+        "id": 1,
+        "nodeType": "PragmaDirective",
+        "src": "33:24:0",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ]
+      },
+      {
+        "id": 39,
+        "nodeType": "ContractDefinition",
+        "src": "134:404:0",
+        "nodes": [
+          {
+            "id": 4,
+            "nodeType": "VariableDeclaration",
+            "src": "166:19:0",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "3fa4f245",
+            "mutability": "mutable",
+            "name": "value",
+            "nameLocation": "180:5:0",
+            "scope": 39,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_int224",
+              "typeString": "int224"
+            },
+            "typeName": {
+              "id": 3,
+              "name": "int224",
+              "nodeType": "ElementaryTypeName",
+              "src": "166:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_int224",
+                "typeString": "int224"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 6,
+            "nodeType": "VariableDeclaration",
+            "src": "192:23:0",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "b80777ea",
+            "mutability": "mutable",
+            "name": "timestamp",
+            "nameLocation": "206:9:0",
+            "scope": 39,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint32",
+              "typeString": "uint32"
+            },
+            "typeName": {
+              "id": 5,
+              "name": "uint32",
+              "nodeType": "ElementaryTypeName",
+              "src": "192:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint32",
+                "typeString": "uint32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 22,
+            "nodeType": "FunctionDefinition",
+            "src": "224:132:0",
+            "nodes": [],
+            "body": {
+              "id": 21,
+              "nodeType": "Block",
+              "src": "290:66:0",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 15,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 13,
+                      "name": "value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4,
+                      "src": "301:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int224",
+                        "typeString": "int224"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 14,
+                      "name": "_value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8,
+                      "src": "309:6:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int224",
+                        "typeString": "int224"
+                      }
+                    },
+                    "src": "301:14:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int224",
+                      "typeString": "int224"
+                    }
+                  },
+                  "id": 16,
+                  "nodeType": "ExpressionStatement",
+                  "src": "301:14:0"
+                },
+                {
+                  "expression": {
+                    "id": 19,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 17,
+                      "name": "timestamp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6,
+                      "src": "326:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 18,
+                      "name": "_timestamp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10,
+                      "src": "338:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "src": "326:22:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "id": 20,
+                  "nodeType": "ExpressionStatement",
+                  "src": "326:22:0"
+                }
+              ]
+            },
+            "functionSelector": "f2128880",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setDapiValues",
+            "nameLocation": "233:13:0",
+            "parameters": {
+              "id": 11,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8,
+                  "mutability": "mutable",
+                  "name": "_value",
+                  "nameLocation": "254:6:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "247:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int224",
+                    "typeString": "int224"
+                  },
+                  "typeName": {
+                    "id": 7,
+                    "name": "int224",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "247:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int224",
+                      "typeString": "int224"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 10,
+                  "mutability": "mutable",
+                  "name": "_timestamp",
+                  "nameLocation": "269:10:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 22,
+                  "src": "262:17:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 9,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "262:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "246:34:0"
+            },
+            "returnParameters": {
+              "id": 12,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "290:0:0"
+            },
+            "scope": 39,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 38,
+            "nodeType": "FunctionDefinition",
+            "src": "364:171:0",
+            "nodes": [],
+            "body": {
+              "id": 37,
+              "nodeType": "Block",
+              "src": "469:66:0",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 31,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 29,
+                      "name": "_value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 25,
+                      "src": "480:6:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int224",
+                        "typeString": "int224"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 30,
+                      "name": "value",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 4,
+                      "src": "489:5:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int224",
+                        "typeString": "int224"
+                      }
+                    },
+                    "src": "480:14:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int224",
+                      "typeString": "int224"
+                    }
+                  },
+                  "id": 32,
+                  "nodeType": "ExpressionStatement",
+                  "src": "480:14:0"
+                },
+                {
+                  "expression": {
+                    "id": 35,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 33,
+                      "name": "_timestamp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 27,
+                      "src": "505:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 34,
+                      "name": "timestamp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6,
+                      "src": "518:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "src": "505:22:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "id": 36,
+                  "nodeType": "ExpressionStatement",
+                  "src": "505:22:0"
+                }
+              ]
+            },
+            "functionSelector": "57de26a4",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "read",
+            "nameLocation": "373:4:0",
+            "parameters": {
+              "id": 23,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "377:2:0"
+            },
+            "returnParameters": {
+              "id": 28,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 25,
+                  "mutability": "mutable",
+                  "name": "_value",
+                  "nameLocation": "437:6:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 38,
+                  "src": "430:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int224",
+                    "typeString": "int224"
+                  },
+                  "typeName": {
+                    "id": 24,
+                    "name": "int224",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "430:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int224",
+                      "typeString": "int224"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 27,
+                  "mutability": "mutable",
+                  "name": "_timestamp",
+                  "nameLocation": "452:10:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 38,
+                  "src": "445:17:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 26,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "445:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "429:34:0"
+            },
+            "scope": 39,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "MockDapiProxy",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 2,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:71:0",
+          "text": "@title This is a mock contract to simulate a dAPI Proxy Contract."
+        },
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          39
+        ],
+        "name": "MockDapiProxy",
+        "nameLocation": "143:13:0",
+        "scope": 40,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 0
+}
