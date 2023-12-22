@@ -2,26 +2,21 @@
 pragma solidity ^0.8.19;
 
 import {
-    ISuperfluid, 
-    ISuperToken, 
+    ISuperfluid,
+    ISuperToken,
     ISuperApp
 } from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
-import { SuperTokenV1Library } from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperTokenV1Library.sol";
+import {SuperTokenV1Library} from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperTokenV1Library.sol";
 import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 
 error Unauthorized();
 
-
 contract DCA {
-
-    /// @notice Owner.
     address public owner;
     address public proxyAddress;
 
-    /// @notice CFA Library.
     using SuperTokenV1Library for ISuperToken;
 
-    /// @notice Allow list.
     mapping(address => bool) public accountList;
 
     constructor(address _owner) {
@@ -40,111 +35,115 @@ contract DCA {
         return (price, timestamp);
     }
 
-    /// @notice Add account to allow list.
-    /// @param _account Account to allow.
+    // Flow Rate - Wei/Sec Flow Rate = 10 * (10^18) / ((365/12) * 24 * 60 * 60)
+
+    // uint256 monthlyUSDAmount = 100 * (10**18); // $100 in wei
+    // uint256 ethPrice; // ETH price in USD, to be fetched from readDataFeed
+    // uint256 monthlyETHAmount = monthlyUSDAmount / ethPrice; // Convert $100 to equivalent ETH
+    // int96 ethFlowRate = int96(monthlyETHAmount / ((365 / 12) * 24 * 60 * 60)); // Convert to flow rate in wei/sec
+
+    function updateEthFlowRate(ISuperToken token, address receiver) external {
+        // Authorization checks
+        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+
+        // Get the latest ETH/USD price
+        (uint256 ethPrice,) = readDataFeed();
+
+        // Check for zero or very low ETH price to prevent division by zero
+        require(ethPrice > 0, "ETH price is too low");
+
+        // Get the current flow rate coming in
+        int96 currentFlowRateIn = getTheCurrentFlow(token, receiver);
+
+
+        // Calculate the equivalent flow rate in ETH based on the current ETH price
+        // Note: currentFlowRateIn represents the flow rate in the token's smallest unit per second
+        // Convert the flow rate to a USD value, then convert it to the equivalent ETH value
+        uint256 currentFlowRateInUSDValue = uint256(int256(currentFlowRateIn)) * ethPrice; // Flow rate in USD value
+        uint256 flowRateInSecondsInETH = currentFlowRateInUSDValue / ethPrice; // Convert to ETH value
+
+        // Ensure that the calculated flow rate fits within the range of int96
+       // require(flowRateInSecondsInETH <= type(int96).max, "Flow rate is too high");
+
+        // Convert to int96 in two steps
+        int96 newFlowRate = int96(int256(flowRateInSecondsInETH));
+
+        // Update the flow rate
+        token.updateFlow(receiver, newFlowRate);
+    }
+
+    // Ownership functions
     function allowAccount(address _account) external {
         if (msg.sender != owner) revert Unauthorized();
 
         accountList[_account] = true;
     }
 
-    /// @notice Removes account from allow list.
-    /// @param _account Account to disallow.
     function removeAccount(address _account) external {
         if (msg.sender != owner) revert Unauthorized();
 
         accountList[_account] = false;
     }
 
-    /// @notice Transfer ownership.
-    /// @param _newOwner New owner account.
     function changeOwner(address _newOwner) external {
         if (msg.sender != owner) revert Unauthorized();
 
         owner = _newOwner;
     }
 
-    /// @notice Send a lump sum of super tokens into the contract.
-    /// @dev This requires a super token ERC20 approval.
-    /// @param token Super Token to transfer.
-    /// @param amount Amount to transfer.
-    function sendLumpSumToContract(ISuperToken token, uint256 amount) external {
-        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
-
-        token.transferFrom(msg.sender, address(this), amount);
-    }
-
-    /// @notice Create a stream into the contract.
-    /// @dev This requires the contract to be a flowOperator for the msg sender.
-    /// @param token Token to stream.
-    /// @param flowRate Flow rate per second to stream.
+    // Stream into Contract Functions
     function createFlowIntoContract(ISuperToken token, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.createFlowFrom(msg.sender, address(this), flowRate);
     }
 
-    /// @notice Update an existing stream being sent into the contract by msg sender.
-    /// @dev This requires the contract to be a flowOperator for the msg sender.
-    /// @param token Token to stream.
-    /// @param flowRate Flow rate per second to stream.
     function updateFlowIntoContract(ISuperToken token, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.updateFlowFrom(msg.sender, address(this), flowRate);
     }
 
-    /// @notice Delete a stream that the msg.sender has open into the contract.
-    /// @param token Token to quit streaming.
     function deleteFlowIntoContract(ISuperToken token) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.deleteFlow(msg.sender, address(this));
     }
 
-    /// @notice Withdraw funds from the contract.
-    /// @param token Token to withdraw.
-    /// @param amount Amount to withdraw.
-    function withdrawFunds(ISuperToken token, uint256 amount) external {
-        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
-
-        token.transfer(msg.sender, amount);
+    function getTheCurrentFlow(ISuperToken token, address _receiver) public view returns (int96) {
+        return token.getFlowRate(address(this), _receiver);
     }
 
-    /// @notice Create flow from contract to specified address.
-    /// @param token Token to stream.
-    /// @param receiver Receiver of stream.
-    /// @param flowRate Flow rate per second to stream.
-    function createFlowFromContract(
-        ISuperToken token,
-        address receiver,
-        int96 flowRate
-    ) external {
+    // Stream out from Contract Functions
+    function createFlowFromContract(ISuperToken token, address receiver, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.createFlow(receiver, flowRate);
     }
 
-    /// @notice Update flow from contract to specified address.
-    /// @param token Token to stream.
-    /// @param receiver Receiver of stream.
-    /// @param flowRate Flow rate per second to stream.
-    function updateFlowFromContract(
-        ISuperToken token,
-        address receiver,
-        int96 flowRate
-    ) external {
+    function updateFlowFromContract(ISuperToken token, address receiver, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.updateFlow(receiver, flowRate);
     }
 
-    /// @notice Delete flow from contract to specified address.
-    /// @param token Token to stop streaming.
-    /// @param receiver Receiver of stream.
     function deleteFlowFromContract(ISuperToken token, address receiver) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.deleteFlow(address(this), receiver);
+    }
+
+    // Fund the contract with tokens
+    function sendLumpSumToContract(ISuperToken token, uint256 amount) external {
+        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+
+        token.transferFrom(msg.sender, address(this), amount);
+    }
+
+    // Pull tokens from contract
+    function withdrawFunds(ISuperToken token, uint256 amount) external {
+        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+
+        token.transfer(msg.sender, amount);
     }
 }
