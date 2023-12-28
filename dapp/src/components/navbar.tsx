@@ -1,35 +1,41 @@
-"use client";
-
 import Link from "next/link";
-import * as React from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "./ui/navigation-menu"
+} from "~/components/ui/navigation-menu";
 import { ModeToggle } from "./mode-toggle";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+enum NavbarOptions {
+  DASHBOARD = "/app",
+  WRAP = "/app/wrap",
+  BRIDGE = "/app/bridge",
+}
 
 export function Navbar() {
   const navigationOptions = [
     {
       name: "Dashboard",
-      href: "/dashboard",
+      href: NavbarOptions.DASHBOARD,
     },
     {
       name: "Wrap / Unwrap",
-      href: "/wrap",
+      href: NavbarOptions.WRAP,
     },
     {
       name: "Bridge",
-      href: "/bridge",
+      href: NavbarOptions.BRIDGE,
     },
   ];
 
   return (
-    <div className="flex items-center justify-between p-4">
-      <div className="font-bold">Stable Bit Flow</div>
+    <div className="mx-auto flex items-center justify-between">
+      <Link href="/">
+        <div className="font-bold">Stable Bit Flow</div>
+      </Link>
       <NavigationMenu>
         <NavigationMenuList>
           {navigationOptions.map((option) => (
@@ -44,7 +50,7 @@ export function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="flex items-center space-x-[10px]">
-        <div>rainbowkit</div>
+        <ConnectButton />
         <ModeToggle />
       </div>
     </div>
