@@ -12,6 +12,10 @@ import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 error Unauthorized();
 error PriceStale();
 
+// 0x96b82b65acf7072efeb00502f45757f254c2a0d4    // super maticx
+// 0x42bb40bf79730451b11f6de1cba222f17b87afd7    // super usdc
+// 3805175038051                                 // 10 usdc flow rate
+
 contract DCA {
     uint256 private constant WEI_PER_ETH = 1e18;
     uint256 private constant SECONDS_PER_MONTH = 365 * 24 * 60 * 60 / 12;
@@ -20,6 +24,8 @@ contract DCA {
     address public owner;
     address public ethProxyAddress;
     address public usdcProxyAddress;
+
+    int96 public publicCalculatedFlowRateIn;
 
     using SuperTokenV1Library for ISuperToken;
 
@@ -50,7 +56,7 @@ contract DCA {
     // int96 ethFlowRate = int96(monthlyETHAmount / ((365 / 12) * 24 * 60 * 60)); // Convert to flow rate in wei/sec
 
     // can be converted to handle more tokens via function passthrough
-    function updateFlowRate(ISuperToken token, address receiver) external {
+    function calculateFlowRate(ISuperToken token, address receiver) public view returns (int96){
         // Authorization checks
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
@@ -96,7 +102,9 @@ contract DCA {
         // should net me 4300000000000000 eth
         // roughly 1623285086
         // Update the flow rate
-        token.updateFlow(receiver, newFlowRate);
+
+        //token.updateFlow(receiver, newFlowRate);
+        return newFlowRate;
     }
 
     // Ownership functions
@@ -119,11 +127,14 @@ contract DCA {
     }
 
     // Stream into Contract Functions
-    function createFlowIntoContract(ISuperToken token, int96 flowRate) external {
+    function createFlowIntoContract(ISuperToken token, ISuperToken _desiredToken, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.createFlowFrom(msg.sender, address(this), flowRate);
         //once stream in, stream out
+        int96 payoutFlowRate = calculateFlowRate(token, msg.sender);
+        publicCalculatedFlowRateIn = payoutFlowRate;
+        createFlowFromContract(_desiredToken, msg.sender, payoutFlowRate);
     }
 
     function updateFlowIntoContract(ISuperToken token, int96 flowRate) external {
@@ -143,7 +154,7 @@ contract DCA {
     }
 
     // Stream out from Contract Functions
-    function createFlowFromContract(ISuperToken token, address receiver, int96 flowRate) external {
+    function createFlowFromContract(ISuperToken token, address receiver, int96 flowRate) public {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.createFlow(receiver, flowRate);
