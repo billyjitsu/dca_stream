@@ -49,7 +49,8 @@ contract DCA {
     // uint256 monthlyETHAmount = monthlyUSDAmount / ethPrice; // Convert $100 to equivalent ETH
     // int96 ethFlowRate = int96(monthlyETHAmount / ((365 / 12) * 24 * 60 * 60)); // Convert to flow rate in wei/sec
 
-    function updateEthFlowRate(ISuperToken token, address receiver) external {
+    // can be converted to handle more tokens via function passthrough
+    function updateFlowRate(ISuperToken token, address receiver) external {
         // Authorization checks
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
@@ -94,7 +95,6 @@ contract DCA {
 
         // should net me 4300000000000000 eth
         // roughly 1623285086
-
         // Update the flow rate
         token.updateFlow(receiver, newFlowRate);
     }
@@ -123,6 +123,7 @@ contract DCA {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.createFlowFrom(msg.sender, address(this), flowRate);
+        //once stream in, stream out
     }
 
     function updateFlowIntoContract(ISuperToken token, int96 flowRate) external {
