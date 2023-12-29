@@ -10,10 +10,16 @@ import {SuperTokenV1Library} from "@superfluid-finance/ethereum-contracts/contra
 import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 
 error Unauthorized();
+error PriceStale();
 
 contract DCA {
+    uint256 private constant WEI_PER_ETH = 1e18;
+    uint256 private constant SECONDS_PER_MONTH = 365 * 24 * 60 * 60 / 12;
+    uint256 private constant USDC_DECIMALS = 1e6;
+
     address public owner;
-    address public proxyAddress;
+    address public ethProxyAddress;
+    address public usdcProxyAddress;
 
     using SuperTokenV1Library for ISuperToken;
 
@@ -23,13 +29,14 @@ contract DCA {
         owner = _owner;
     }
 
-    function setProxyAddress(address _proxyAddress) public {
+    function setProxyAddress(address _ethProxyAddress, address _usdcProxyAddress) public {
         if (msg.sender != owner) revert Unauthorized();
-        proxyAddress = _proxyAddress;
+        ethProxyAddress = _ethProxyAddress;
+        usdcProxyAddress = _usdcProxyAddress;
     }
 
-    function readDataFeed() public view returns (uint256, uint256) {
-        (int224 value, uint256 timestamp) = IProxy(proxyAddress).read();
+    function readDataFeed(address _priceFeed) public view returns (uint256, uint256) {
+        (int224 value, uint256 timestamp) = IProxy(_priceFeed).read();
         //convert price to UINT256
         uint256 price = uint224(value);
         return (price, timestamp);
@@ -47,26 +54,46 @@ contract DCA {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         // Get the latest ETH/USD price
-        (uint256 ethPrice,) = readDataFeed();
+        (uint256 ethPrice,) = readDataFeed(ethProxyAddress);
+        // example 2344120000000000000000
+        (uint256 usdcPrice,) = readDataFeed(usdcProxyAddress);
 
         // Check for zero or very low ETH price to prevent division by zero
-        require(ethPrice > 0, "ETH price is too low");
+        if (ethPrice <= 0 || usdcPrice <= 0) revert PriceStale();
 
         // Get the current flow rate coming in
         int96 currentFlowRateIn = getTheCurrentFlow(token, receiver);
+        //  10 bucks a month  3805175038052
 
+        // reverse the amount
+        // (3805175038052 * ((365 / 12) * 24 * 60 * 60))
+        uint256 currentFlowRateInUsd = uint256(int256(currentFlowRateIn)) * SECONDS_PER_MONTH;
+        // 10 (10^18)
 
-        // Calculate the equivalent flow rate in ETH based on the current ETH price
-        // Note: currentFlowRateIn represents the flow rate in the token's smallest unit per second
-        // Convert the flow rate to a USD value, then convert it to the equivalent ETH value
-        uint256 currentFlowRateInUSDValue = uint256(int256(currentFlowRateIn)) * ethPrice; // Flow rate in USD value
-        uint256 flowRateInSecondsInETH = currentFlowRateInUSDValue / ethPrice; // Convert to ETH value
+        // make sure it's pegged
+        // 10 (10e18) * usdcPrice / 10e18
+        uint256 currentFlowRateInUsdPegged = (currentFlowRateInUsd * usdcPrice) / WEI_PER_ETH;
+
+        // now we need to convert it to eth value
+        //                      10 (10^18 ) / 2344120000000000000000
+        // value to getin eth is it stays consisten
+        uint256 valueToGetInEth = currentFlowRateInUsdPegged / ethPrice;
+        // amount in ETH = (currentflowrate in dollars (10 now) / eth price)
+        // = 0.004265993208544
+
+        // now calculate the flow rate out base on this value
+        //  0.004265993208544 * (10^18) / ((365/12) * 24 * 60 * 60)
+        uint256 flowRateInSecondsInETH = (valueToGetInEth * WEI_PER_ETH) / SECONDS_PER_MONTH;
+        // 1623285086
 
         // Ensure that the calculated flow rate fits within the range of int96
-       // require(flowRateInSecondsInETH <= type(int96).max, "Flow rate is too high");
+        // require(flowRateInSecondsInETH <= type(int96).max, "Flow rate is too high");
 
         // Convert to int96 in two steps
         int96 newFlowRate = int96(int256(flowRateInSecondsInETH));
+
+        // should net me 4300000000000000 eth
+        // roughly 1623285086
 
         // Update the flow rate
         token.updateFlow(receiver, newFlowRate);
