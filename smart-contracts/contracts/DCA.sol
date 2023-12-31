@@ -12,8 +12,7 @@ import "@api3/contracts/v0.8/interfaces/IProxy.sol";
 error Unauthorized();
 error PriceStale();
 
-// 0x96b82b65acf7072efeb00502f45757f254c2a0d4    // super maticx
-// 0x42bb40bf79730451b11f6de1cba222f17b87afd7    // super usdc
+
 // 3805175038051                                 // 10 usdc flow rate
 
 contract DCA {
@@ -127,14 +126,20 @@ contract DCA {
     }
 
     // Stream into Contract Functions
-    function createFlowIntoContract(ISuperToken token, ISuperToken _desiredToken, int96 flowRate) external {
+    // function createFlowIntoContract(ISuperToken token, ISuperToken _desiredToken, int96 flowRate) external {
+    //     if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+
+    //     token.createFlowFrom(msg.sender, address(this), flowRate);
+    //     //once stream in, stream out
+    //     int96 payoutFlowRate = calculateFlowRate(token, msg.sender);
+    //     publicCalculatedFlowRateIn = payoutFlowRate;
+    //     createFlowFromContract(_desiredToken, msg.sender, payoutFlowRate);
+    // }
+
+     function createFlowIntoContract(ISuperToken token, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.createFlowFrom(msg.sender, address(this), flowRate);
-        //once stream in, stream out
-        int96 payoutFlowRate = calculateFlowRate(token, msg.sender);
-        publicCalculatedFlowRateIn = payoutFlowRate;
-        createFlowFromContract(_desiredToken, msg.sender, payoutFlowRate);
     }
 
     function updateFlowIntoContract(ISuperToken token, int96 flowRate) external {
