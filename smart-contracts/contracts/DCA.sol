@@ -35,7 +35,7 @@ contract DCA {
     }
 
     function setProxyAddress(address _ethProxyAddress, address _usdcProxyAddress) public {
-        if (msg.sender != owner) revert Unauthorized();
+      //  if (msg.sender != owner) revert Unauthorized();
         ethProxyAddress = _ethProxyAddress;
         usdcProxyAddress = _usdcProxyAddress;
     }
@@ -57,7 +57,7 @@ contract DCA {
     // can be converted to handle more tokens via function passthrough
     function calculateFlowRate(ISuperToken token, address receiver) public view returns (int96){
         // Authorization checks
-        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+       // if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         // Get the latest ETH/USD price
         (uint256 ethPrice,) = readDataFeed(ethProxyAddress);
@@ -126,21 +126,21 @@ contract DCA {
     }
 
     // Stream into Contract Functions
-    // function createFlowIntoContract(ISuperToken token, ISuperToken _desiredToken, int96 flowRate) external {
+    function createFlowIntoContract(ISuperToken token, ISuperToken _desiredToken, int96 flowRate) external {
+      //  if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+
+        token.createFlowFrom(msg.sender, address(this), flowRate);
+        //once stream in, stream out
+        int96 payoutFlowRate = calculateFlowRate(token, msg.sender);
+        publicCalculatedFlowRateIn = payoutFlowRate;
+      //  createFlowFromContract(_desiredToken, msg.sender, payoutFlowRate);
+    }
+
+    //  function createFlowIntoContract(ISuperToken token, int96 flowRate) external {
     //     if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
     //     token.createFlowFrom(msg.sender, address(this), flowRate);
-    //     //once stream in, stream out
-    //     int96 payoutFlowRate = calculateFlowRate(token, msg.sender);
-    //     publicCalculatedFlowRateIn = payoutFlowRate;
-    //     createFlowFromContract(_desiredToken, msg.sender, payoutFlowRate);
     // }
-
-     function createFlowIntoContract(ISuperToken token, int96 flowRate) external {
-        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
-
-        token.createFlowFrom(msg.sender, address(this), flowRate);
-    }
 
     function updateFlowIntoContract(ISuperToken token, int96 flowRate) external {
         if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
@@ -179,14 +179,14 @@ contract DCA {
 
     // Fund the contract with tokens
     function sendLumpSumToContract(ISuperToken token, uint256 amount) external {
-        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+       // if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.transferFrom(msg.sender, address(this), amount);
     }
 
     // Pull tokens from contract
     function withdrawFunds(ISuperToken token, uint256 amount) external {
-        if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
+      //  if (!accountList[msg.sender] && msg.sender != owner) revert Unauthorized();
 
         token.transfer(msg.sender, amount);
     }
